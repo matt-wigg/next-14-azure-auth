@@ -1,4 +1,4 @@
-import { signOut } from "@/auth";
+import { azureADUnauthenticated } from "../services/authenticate";
 import Button from "@/app/components/button";
 
 export default async function LogoutForm() {
@@ -6,7 +6,7 @@ export default async function LogoutForm() {
     <form
       action={async () => {
         "use server";
-        await signOut();
+        await azureADUnauthenticated();
       }}
     >
       <Button

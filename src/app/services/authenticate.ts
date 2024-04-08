@@ -17,7 +17,7 @@ export async function azureADAuthenticate(
   }
 }
 
-export async function azureAdUnauthenticated(): Promise<void> {
+export async function azureADUnauthenticated(): Promise<void> {
   try {
     await signOut();
   } catch (error: unknown) {
