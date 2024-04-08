@@ -19,7 +19,7 @@ export async function azureADAuthenticate(
 
 export async function azureADUnauthenticated(): Promise<void> {
   try {
-    await signOut();
+    await signOut({ redirect: false });
   } catch (error: unknown) {
     console.error("Error signing out:", error);
     throw error;
