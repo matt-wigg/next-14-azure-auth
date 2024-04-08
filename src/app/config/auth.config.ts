@@ -22,16 +22,26 @@ export const authConfig = {
     }),
   ],
   // https://github.com/nextauthjs/next-auth/discussions/6898#discussioncomment-5308820
+  // https://github.com/nextauthjs/next-auth/issues/1664#issuecomment-815285862
   cookies: {
-    pkceCodeVerifier: {
-      name: "next-auth.pkce.code_verifier",
+    csrfToken: {
+      name: 'next-auth.csrf-token',
       options: {
         httpOnly: true,
-        sameSite: "none",
-        path: "/",
-        secure: true,
-      },
+        sameSite: 'none',
+        path: '/',
+        secure: true
+      }
     },
+    pkceCodeVerifier: {
+      name: 'next-auth.pkce.code_verifier',
+      options: {
+        httpOnly: true,
+        sameSite: 'none',
+        path: '/',
+        secure: true
+      }
+    }
   },
   callbacks: {
     async jwt({ token, account }) {
