@@ -21,6 +21,18 @@ export const authConfig = {
       },
     }),
   ],
+  // https://github.com/nextauthjs/next-auth/discussions/6898#discussioncomment-5308820
+  cookies: {
+    pkceCodeVerifier: {
+      name: "next-auth.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+  },
   callbacks: {
     async jwt({ token, account }) {
       if (account?.access_token) {
