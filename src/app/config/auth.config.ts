@@ -4,9 +4,6 @@ import { authEnvConfig } from "@/app/config/env.config";
 import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
-  pages: {
-    signIn: "/login",
-  },
   providers: [
     AzureADProvider({
       clientId: authEnvConfig.AUTH_AZURE_ENTERPRISE_APPLICATION_ID,
