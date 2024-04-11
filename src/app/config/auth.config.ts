@@ -55,9 +55,9 @@ export const authConfig = {
       }
       return session;
     },
-    async authorized({ auth }) {
-      return !!auth?.user;
-    },
+    // async authorized({ auth }) {
+    //   return !!auth?.user;
+    // },
   },
   secret: authEnvConfig.AUTH_SECRET,
 } satisfies NextAuthConfig;
