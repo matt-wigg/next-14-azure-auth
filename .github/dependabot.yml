@@ -1,0 +1,16 @@
+version: 1
+updates:
+  - package-ecosystem: "npm" 
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    assignees:
+      - "matt-wigg"
+    labels:
+      - "dependencies"
+      - "automated-pr"
+    reviewers:
+      - "matt-wigg"
