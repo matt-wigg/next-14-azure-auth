@@ -1,8 +1,9 @@
 "use server";
 
 import Link from "next/link";
+import Button from "@/app/components/button";
 
-async function getRandomCatEmoji() {
+function getRandomCatEmoji() {
   const catEmojis = [
     "🐱",
     "🐈",
@@ -55,13 +56,10 @@ export default async function UnknownPage({
       <div className="text-md md:text-lg text-center bg-slate-900 shadow-md rounded-lg p-4 max-w-md mb-8">
         Fun Fact: {catFact}
       </div>
-      <Link
-        href="/"
-        className="group text-md md:text-lg text-center bg-blue-500 hover:bg-blue-600 shadow-md rounded-lg p-2 max-w-md"
-      >
-        <button className="group-hover:underline underline-offset-4">
+      <Link href="/" className="group ">
+        <Button label="Go Home" type="button">
           Meow Button
-        </button>
+        </Button>
       </Link>
     </main>
   );

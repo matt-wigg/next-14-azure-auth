@@ -6,7 +6,7 @@ import type { NextAuthConfig } from "next-auth";
 export const authConfig = {
   pages: {
     signIn: "/login",
-    signOut: "/",
+    signOut: "/login",
     error: "/login",
   },
   providers: [
@@ -16,6 +16,7 @@ export const authConfig = {
         authEnvConfig.AUTH_AZURE_APP_REGISTRATION_CLIENT_SECRET_VALUE,
       tenantId: authEnvConfig.AUTH_AZURE_APP_REGISTRATION_DIRECTORY_TENANT_ID,
       authorization: {
+        // https://learn.microsoft.com/en-us/graph/permissions-overview
         params: {
           scope: "openid profile email User.Read offline_access",
         },
@@ -28,7 +29,7 @@ export const authConfig = {
       name: "next-auth.pkce.code_verifier",
       options: {
         httpOnly: true,
-        sameSite: "lax",
+        sameSite: "none",
         path: "/",
         secure: true,
       },
@@ -55,9 +56,9 @@ export const authConfig = {
       }
       return session;
     },
-    // async authorized({ auth }) {
-    //   return !!auth?.user;
-    // },
+    async authorized({ auth }) {
+      return !!auth?.user;
+    },
   },
   secret: authEnvConfig.AUTH_SECRET,
 } satisfies NextAuthConfig;

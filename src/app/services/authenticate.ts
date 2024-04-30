@@ -3,7 +3,7 @@
 import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 
-export async function azureADAuthenticate(
+export async function authenticate(
   prevState: string | undefined,
   formData: FormData
 ) {
@@ -17,11 +17,6 @@ export async function azureADAuthenticate(
   }
 }
 
-export async function azureADUnauthenticated(): Promise<void> {
-  try {
-    await signOut({ redirect: false });
-  } catch (error: unknown) {
-    console.error("Error signing out:", error);
-    throw error;
-  }
+export async function deauthenticate(): Promise<void> {
+  await signOut();
 }

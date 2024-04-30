@@ -2,7 +2,7 @@
 
 import { useFormState, useFormStatus } from "react-dom";
 import Button from "@/app/components/button";
-import { azureADAuthenticate } from "@/app/services/authenticate";
+import { authenticate } from "@/app/services/authenticate";
 
 function SingleSingOnButton() {
   const { pending } = useFormStatus();
@@ -22,7 +22,7 @@ function SingleSingOnButton() {
 }
 
 export default function LoginForm() {
-  const [errorMessage, signIn] = useFormState(azureADAuthenticate, undefined);
+  const [errorMessage, signIn] = useFormState(authenticate, undefined);
 
   return (
     <form action={signIn}>
