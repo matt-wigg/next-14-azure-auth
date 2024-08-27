@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next-14-Azure-Auth
+
+Next-14-Azure-Auth is a starter template for building secure Next.js v14+ applications using Next-Auth v5 for authentication with Microsoft Entra ID (formerly Azure AD) and Microsoft Graph API. This template provides a robust foundation for integrating Azure authentication into your Next.js applications, making it easier to manage secure user access.
+
+## Features
+
+- **Next.js v14+**: Leverage the latest features and improvements of Next.js for building fast and scalable applications.
+- **Next-Auth v5**: A flexible authentication solution with built-in support for Microsoft Entra ID.
+- **Microsoft Entra ID**: Secure authentication using Microsoft Entra ID, ideal for enterprise-grade applications.
+- **Graph API Integration**: Easily access Microsoft 365 services like users, groups, and more through the Microsoft Graph API.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Before you can run this application locally, ensure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/) (v16+)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- Azure account with permissions to register applications in Microsoft Entra ID.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Local Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the Repository:**
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   git clone https://github.com/yourusername/next-14-azure-auth.git
+   cd next-14-azure-auth
+    ```
