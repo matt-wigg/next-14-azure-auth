@@ -8,7 +8,7 @@ export async function authenticate(
   formData: FormData
 ) {
   try {
-    await signIn("azure-ad", formData);
+    await signIn("microsoft-entra-id", formData);
   } catch (error: unknown) {
     if (error instanceof AuthError) {
       return "Something went wrong with Azure AD authentication.";

@@ -1,4 +1,4 @@
-import AzureADProvider from "next-auth/providers/azure-ad";
+import MicrosoftEntraID from "@auth/core/providers/microsoft-entra-id";
 import { getUserDetails } from "@/app/services/msGraphApi";
 import { authEnvConfig } from "@/app/config/env.config";
 import type { NextAuthConfig } from "next-auth";
@@ -10,11 +10,11 @@ export const authConfig = {
     error: "/login",
   },
   providers: [
-    AzureADProvider({
-      clientId: authEnvConfig.AUTH_AZURE_ENTERPRISE_APPLICATION_ID,
-      clientSecret:
-        authEnvConfig.AUTH_AZURE_APP_REGISTRATION_CLIENT_SECRET_VALUE,
-      tenantId: authEnvConfig.AUTH_AZURE_APP_REGISTRATION_DIRECTORY_TENANT_ID,
+    // https://authjs.dev/getting-started/providers/microsoft-entra-id
+    MicrosoftEntraID({
+      clientId: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_ID,
+      clientSecret: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_SECRET,
+      tenantId: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_TENANT_ID,
       authorization: {
         // https://learn.microsoft.com/en-us/graph/permissions-overview
         params: {
@@ -23,18 +23,6 @@ export const authConfig = {
       },
     }),
   ],
-  // https://github.com/nextauthjs/next-auth/discussions/6898#discussioncomment-5308820
-  cookies: {
-    pkceCodeVerifier: {
-      name: "next-auth.pkce.code_verifier",
-      options: {
-        httpOnly: true,
-        sameSite: "none",
-        path: "/",
-        secure: true,
-      },
-    },
-  },
   callbacks: {
     async jwt({ token, account }) {
       if (account?.access_token) {

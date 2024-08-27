@@ -12,6 +12,7 @@ export default function LoginLogo() {
         style={{
           objectFit: "cover",
         }}
+        priority
       />
     </figure>
   );

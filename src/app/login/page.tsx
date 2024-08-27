@@ -1,6 +1,6 @@
-import LoginForm from "@/app/login/components/login-form";
-import LoginPolicy from "@/app/login/components/login-policy";
-import LoginLogo from "@/app/login/components/login-logo";
+import LoginForm from "@/app/components/login-form";
+import LoginPolicy from "@/app/components/login-policy";
+import LoginLogo from "@/app/components/login-logo";
 
 export default function LoginDisplay() {
   return (
