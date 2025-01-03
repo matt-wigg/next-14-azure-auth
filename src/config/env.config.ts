@@ -1,4 +1,4 @@
-import { AuthEnvironment } from "@/app/types/auth.types";
+import { AuthEnvironment } from '@/types/auth.types';
 
 function getEnv(key: string): string {
   const value = process.env[key];
@@ -10,9 +10,9 @@ function getEnv(key: string): string {
 
 export const authEnvConfig: AuthEnvironment = {
   // Azure Microsoft Entra ID (Active Directory)
-  AUTH_MICROSOFT_ENTRA_ID_ID: getEnv("AUTH_MICROSOFT_ENTRA_ID_ID"),
-  AUTH_MICROSOFT_ENTRA_ID_SECRET: getEnv("AUTH_MICROSOFT_ENTRA_ID_SECRET"),
-  AUTH_MICROSOFT_ENTRA_ID_TENANT_ID: getEnv("AUTH_MICROSOFT_ENTRA_ID_TENANT_ID"),
+  AUTH_MICROSOFT_ENTRA_ID_ID: getEnv('AUTH_MICROSOFT_ENTRA_ID_ID'),
+  AUTH_MICROSOFT_ENTRA_ID_SECRET: getEnv('AUTH_MICROSOFT_ENTRA_ID_SECRET'),
+  AUTH_MICROSOFT_ENTRA_ID_ISSUER: getEnv('AUTH_MICROSOFT_ENTRA_ID_ISSUER'),
   // Next Auth - https://authjs.dev/reference/nextjs#environment-variable-inference
-  AUTH_SECRET: getEnv("AUTH_SECRET"),
+  AUTH_SECRET: getEnv('AUTH_SECRET'),
 };

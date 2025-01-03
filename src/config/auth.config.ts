@@ -1,24 +1,24 @@
-import MicrosoftEntraID from "@auth/core/providers/microsoft-entra-id";
-import { getUserDetails } from "@/app/services/msGraphApi";
-import { authEnvConfig } from "@/app/config/env.config";
-import type { NextAuthConfig } from "next-auth";
+import MicrosoftEntraID from '@auth/core/providers/microsoft-entra-id';
+import { getUserDetails } from '@/services/msGraphApi';
+import { authEnvConfig } from '@/config/env.config';
+import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
   pages: {
-    signIn: "/login",
-    signOut: "/login",
-    error: "/login",
+    signIn: '/login',
+    signOut: '/login',
+    error: '/login',
   },
   providers: [
     // https://authjs.dev/getting-started/providers/microsoft-entra-id
     MicrosoftEntraID({
       clientId: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_ID,
       clientSecret: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_SECRET,
-      tenantId: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_TENANT_ID,
+      issuer: `https://login.microsoftonline.com/${authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_ISSUER}/v2.0`,
       authorization: {
         // https://learn.microsoft.com/en-us/graph/permissions-overview
         params: {
-          scope: "openid profile email User.Read offline_access",
+          scope: 'openid profile email User.Read offline_access',
         },
       },
     }),
@@ -31,7 +31,7 @@ export const authConfig = {
           token.userDetails = userDetails;
         } catch (error) {
           console.error(
-            "Failed to fetch user details from Microsoft Graph API",
+            'Failed to fetch user details from Microsoft Graph API',
             error
           );
         }
@@ -47,6 +47,12 @@ export const authConfig = {
     async authorized({ auth }) {
       return !!auth?.user;
     },
+  },
+  // https://next-auth.js.org/configuration/options#session
+  session: {
+    strategy: 'jwt',
+    maxAge: 3600,
+    updateAge: 900,
   },
   secret: authEnvConfig.AUTH_SECRET,
 } satisfies NextAuthConfig;

@@ -1,10 +1,10 @@
-import { JWT } from "next-auth/jwt";
-import "next-auth";
+import { JWT } from 'next-auth/jwt';
+import 'next-auth';
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface User {
     // Microsoft Graph API `/me` Response - https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#response-1
-    "@odata.context"?: string;
+    '@odata.context'?: string;
     businessPhones?: string[];
     displayName?: string;
     givenName?: string;
@@ -28,7 +28,7 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   interface JWT {
     userDetails?: User;
   }
