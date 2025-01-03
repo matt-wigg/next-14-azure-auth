@@ -1,15 +1,15 @@
-import LoadingSpinner from "@/app/components/loading-spinner";
+import { LoadingSpinner } from '@/components/loading-spinner';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
-  type: "button" | "submit" | "reset";
+  type: 'button' | 'submit' | 'reset';
   children?: React.ReactNode;
   className?: string;
   label: string;
   loading?: boolean;
 }
 
-export default function Button({
+export function Button({
   onClick,
   type,
   children,
@@ -27,7 +27,7 @@ export default function Button({
       disabled={loading}
       aria-label={label}
     >
-      <span className="min-w-60 text-center">{content}</span>
+      <span className='min-w-60 text-center'>{content}</span>
     </button>
   );
 }

@@ -83,10 +83,18 @@ Ensure the following are installed before running the application locally:
    AUTH_SECRET=your_auth_secret
    AUTH_MICROSOFT_ENTRA_ID_ID=your_azure_client_id
    AUTH_MICROSOFT_ENTRA_ID_SECRET=your_azure_client_secret
-   AUTH_MICROSOFT_ENTRA_ID_TENANT_ID=your_azure_tenant_id
+   AUTH_MICROSOFT_ENTRA_ID_ISSUER=your_azure_issuer_id
    ```
 
-4. **Run the Application**
+4. **Generate the AUTH_SECRET**
+
+   To generate the `AUTH_SECRET`, run the following command:
+
+   ```bash
+   openssl rand -base64 32
+   ```
+
+5. **Run the Application**
 
    Start the development server:
 
