@@ -1,21 +1,21 @@
-"use server";
+'use server';
 
-import { auth } from "@/auth";
-import { Logo } from "@/components/logo";
-import { LogoutForm } from "@/components/log-out-form";
+import { auth } from '@/auth';
+import { Logo } from '@/components/logo';
+import { LogoutForm } from '@/components/log-out-form';
 
 export default async function Home() {
   const session = await auth();
-  const userName = session?.user?.name || "Guest";
+  const userName = session?.user?.name || 'Guest';
   const userImage = session?.user?.image || undefined;
   console.log(userImage);
   return (
     <main
-      className="flex flex-col space-y-6 justify-center items-center h-screen"
-      aria-label="Home Page"
+      className='flex flex-col space-y-6 justify-center items-center h-screen'
+      aria-label='Home Page'
     >
       <Logo src={userImage} />
-      <h1 className="text-2xl font-semibold">Hello, {userName}!</h1>
+      <h1 className='text-2xl font-semibold'>Hello, {userName}!</h1>
       <LogoutForm />
     </main>
   );
