@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
-import { auth } from "@/auth";
+import { NextResponse } from 'next/server';
+import { auth } from '@/auth';
 import {
   isPublicRoute,
   redirectToLogin,
   redirectToWelcome,
-} from "@/app/utils/middleware.utils";
-import { AuthenticatedNextRequest } from "@/app/types/middleware.types";
+} from '@/utils/middleware.utils';
+import { AuthenticatedNextRequest } from '@/types/middleware.types';
 
 export const config = {
   // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
 
 export default auth((req: AuthenticatedNextRequest) => {
@@ -27,7 +27,7 @@ export default auth((req: AuthenticatedNextRequest) => {
     }
     return NextResponse.next();
   } catch (error) {
-    console.error("Error in middleware:", error);
+    console.error('Error in middleware:', error);
     return redirectToLogin(req.nextUrl);
   }
 });
