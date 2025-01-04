@@ -8,7 +8,7 @@ function SingleSingOnButton() {
   const { pending } = useFormStatus();
   return (
     <section className='flex flex-col items-center'>
-      <h1 className='text-3xl text-center pb-6 font-semibold'>
+      <h1 className='text-2xl text-center pb-6 font-semibold'>
         {pending ? 'Working on it...' : 'Welcome to Next-14-Azure-Auth!'}
       </h1>
       <Button

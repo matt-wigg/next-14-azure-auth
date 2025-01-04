@@ -1,35 +1,49 @@
 import { JWT } from 'next-auth/jwt';
 import 'next-auth';
 
-declare module 'next-auth' {
-  interface User {
-    // Microsoft Graph API `/me` Response - https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#response-1
-    '@odata.context'?: string;
-    businessPhones?: string[];
-    displayName?: string;
-    givenName?: string;
-    jobTitle?: string | null;
-    mail?: string | null;
-    mobilePhone?: string | null;
-    officeLocation?: string | null;
-    preferredLanguage?: string | null;
-    surname?: string;
-    userPrincipalName?: string;
-    id?: string;
-  }
+// Microsoft Graph API types based on /me endpoint
+// https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#response-1
+interface MicrosoftGraphUser {
+  '@odata.context': string;
+  businessPhones: string[];
+  displayName: string;
+  givenName: string;
+  jobTitle: null;
+  mail: null;
+  mobilePhone: null;
+  officeLocation: null;
+  preferredLanguage: string;
+  surname: string;
+  userPrincipalName: string;
+  id: string;
+}
 
+declare module 'next-auth' {
   interface Session {
-    user?: User;
+    user: {
+      name: string;
+      email: string;
+      image: null;
+    } & MicrosoftGraphUser;
     expires: string;
   }
 
-  interface Auth {
-    user?: User;
+  interface User {
+    name: string;
+    email: string;
+    image: null;
   }
 }
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    userDetails?: User;
+    name: string;
+    email: string;
+    picture: null; // JWT uses 'picture' instead of 'image'
+    sub: string;
+    userDetails: MicrosoftGraphUser;
+    iat: number;
+    exp: number;
+    jti: string;
   }
 }

@@ -1,13 +1,18 @@
 # Next-14-Azure-Auth
-Next-14-Azure-Auth is a starter template for building secure Next.js v14+ apps with Microsoft Entra ID authentication and a Microsoft Graph API integration. It uses the [NextAuth.js](https://next-auth.js.org/) library for authentication and [Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview) for fetching user data.
+
+Next-14-Azure-Auth is a starter template for building secure Next.js v14+ Tailwind apps with Microsoft Entra ID authentication. It uses the [Next-Auth.js Library](https://next-auth.js.org/) for authentication and the [Microsoft Graph Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for fetching user data.
 
 ## Prerequisites
+
 Ensure the following are installed before running the application locally:
-- [Node.js](https://nodejs.org/) (v16+) & [npm](https://www.npmjs.com/).
+
+- [Node.js](https://nodejs.org/) (v18.17+) & [npm](https://www.npmjs.com/).
 - Azure account with app registration permissions in Microsoft Entra ID.
 
 ## Azure Setup for Microsoft Entra ID
+
 1. **Register the Application**
+
    - Navigate to the [Azure portal](https://portal.azure.com/).
    - Go to **Microsoft Entra ID** > **App registrations** > **New registration**.
    - Name your application (e.g., `Next-14-Azure-Auth`).
@@ -17,6 +22,7 @@ Ensure the following are installed before running the application locally:
    - Click **Register** to create the application.
 
 2. **Configure the Application**
+
    - Once registered, navigate to the app's overview page:
      - Copy the **Application (client) ID** and set it in your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_ID`.
      - Copy the **Directory (tenant) ID** and set it in your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_ISSUER`.
@@ -26,24 +32,42 @@ Ensure the following are installed before running the application locally:
      - Once created, copy the generated secret value and set it in your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_SECRET`.
 
 3. **Set Up API Permissions**
+
    - Navigate to **API permissions** > **Add a permission**.
    - Choose **Microsoft Graph** > **Delegated permissions**.
    - Add the following permissions:
-     - `User.Read`
-     - `openid`
-     - `email`
-     - `profile`
+     - `User.Read` - for accessing user details
+     - `openid` - for OpenID Connect authentication
+     - `email` - for email access
+     - `profile` - for basic profile info
+     - `offline_access` - for refresh tokens
    - After adding the permissions, click **Grant admin consent for [Your Organization]** to apply them.
 
 4. **(Optional) Create an Enterprise Application**
+
    - To manage access to the application:
      - Go to **Azure Active Directory** > **Enterprise applications**.
      - Find your application by name and select it.
      - Under **Users and groups**, assign users or groups that should have access to the application.
 
-5. **Environment Variables Setup**
+## Local Development Setup
 
-   Your `.env` file should include the following variables:
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/matt-wigg/next-14-azure-auth.git
+   cd next-14-azure-auth
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set Up Environment Variables**
+
+   Create a (or edit the) `.env` file in the root directory:
 
    ```bash
    AUTH_SECRET=your_auth_secret
@@ -52,28 +76,16 @@ Ensure the following are installed before running the application locally:
    AUTH_MICROSOFT_ENTRA_ID_ISSUER=your_azure_tenant_id
    ```
 
-6. **Generate the AUTH_SECRET**
- 
-   To generate the `AUTH_SECRET`, run the following command:
-   
+   To generate the `AUTH_SECRET`, run:
+
    ```bash
    openssl rand -base64 32
    ```
 
-7. **Install Dependencies**
+4. **Start the Development Server**
 
-   Install the required npm packages:
-
-   ```bash
-   npm install
-   ```
-
-8. **Run the Application**
-
-   Start the development server:
-   
    ```bash
    npm run dev
    ```
 
-   Your application will run at `http://localhost:3000`.
+   Your application will be available at `http://localhost:3000`.
