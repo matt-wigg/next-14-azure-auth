@@ -1,5 +1,4 @@
 import { signOut } from '@/auth';
-import { Button } from '@/components/button';
 
 export async function SignOutForm() {
   return (
@@ -9,11 +8,7 @@ export async function SignOutForm() {
         await signOut();
       }}
     >
-      <Button
-        type='submit'
-        className='bg-red-500 hover:bg-red-600'
-        label='Sign out'
-      />
+      <button className='bg-red-500 hover:bg-red-600'>Sign out</button>
     </form>
   );
 }

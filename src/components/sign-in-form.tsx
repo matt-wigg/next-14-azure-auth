@@ -2,16 +2,13 @@
 
 import { useFormState, useFormStatus } from 'react-dom';
 import { signInAction } from '@/services/msEntraId';
-import { Button } from '@/components/button';
 
 function SignInButton() {
   const { pending } = useFormStatus();
   return (
-    <Button
-      type='submit'
-      loading={pending}
-      label={pending ? 'Signing in...' : 'Sign in with Microsoft Entra ID'}
-    />
+    <button disabled={pending}>
+      {pending ? 'Signing in...' : 'Sign in with Microsoft Entra ID'}
+    </button>
   );
 }
 

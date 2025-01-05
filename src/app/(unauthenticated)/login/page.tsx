@@ -6,7 +6,7 @@ export default function SignInPage() {
   return (
     <main aria-label='Sign in page'>
       <Logo src={logo} />
-      <h1 className='text-2xl font-semibold'>Welcome to Next-14-Azure-Auth</h1>
+      <h1>Welcome to Next-14-Azure-Auth</h1>
       <SignInForm />
     </main>
   );

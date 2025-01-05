@@ -1,7 +1,6 @@
 'use server';
 
 import Link from 'next/link';
-import { Button } from '@/components/button';
 
 function getRandomCatEmoji() {
   const catEmojis = [
@@ -46,16 +45,14 @@ export default async function UnknownPage({
 
   return (
     <main className='text-center' aria-label='Unknown page'>
-      <h1 className='text-2xl font-bold'>Oops! Page Not Found</h1>
+      <h1>Oops! Page Not Found</h1>
       <p>The page &quot;{params.page}&quot; does not exist... yet.</p>
       <span className='text-6xl'>{catEmoji}</span>
       <div className='bg-slate-700 p-3 max-w-sm rounded'>
         Fun Fact: {catFact}
       </div>
       <Link href='/'>
-        <Button label='Go Home' type='button'>
-          Home
-        </Button>
+        <button>Home</button>
       </Link>
     </main>
   );
