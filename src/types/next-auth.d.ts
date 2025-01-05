@@ -6,41 +6,41 @@ import type { JWT } from 'next-auth/jwt';
 interface MicrosoftGraphUser {
   '@odata.context': string;
   businessPhones: string[];
-  displayName: string;
-  givenName: string;
-  jobTitle: null;
-  mail: null;
-  mobilePhone: null;
-  officeLocation: null;
-  preferredLanguage: string;
-  surname: string;
-  userPrincipalName: string;
-  id: string;
+  displayName: string | null; 
+  givenName: string | null;   
+  jobTitle: string | null;
+  mail: string | null;
+  mobilePhone: string | null;
+  officeLocation: string | null;
+  preferredLanguage: string | null;
+  surname: string | null;     
+  userPrincipalName: string; 
+  id: string;                
 }
 
 declare module 'next-auth' {
   interface Session {
     user: {
-      name: string;
-      email: string;
-      image: null;
+      name: string | null;    
+      email: string | null;   
+      image: string | null;  
     } & MicrosoftGraphUser;
     expires: string;
   }
 
   interface User {
-    name: string;
-    email: string;
-    image: null;
+    name: string | null;
+    email: string | null;
+    image: string | null;
   }
 }
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    name: string;
-    email: string;
-    picture: null; // JWT uses 'picture' instead of 'image'
-    sub: string;
+    name: string | null;
+    email: string | null;
+    picture: string | null;    // JWT uses 'picture' instead of 'image'
+    sub: string;            
     userDetails: MicrosoftGraphUser;
     iat: number;
     exp: number;
