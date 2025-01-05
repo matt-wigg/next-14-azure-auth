@@ -11,7 +11,7 @@ export const authConfig = {
   providers: [
     // https://authjs.dev/getting-started/providers/microsoft-entra-id
     MicrosoftEntraID({
-      clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID,
+      clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
       clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
       issuer: `https://login.microsoftonline.com/${process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER}/v2.0`,
       authorization: {
