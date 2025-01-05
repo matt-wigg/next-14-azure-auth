@@ -3,11 +3,7 @@ import { getUserDetails } from '@/services/msGraphApi';
 import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
-  pages: {
-    signIn: '/login',
-    signOut: '/login',
-    error: '/login',
-  },
+  // https://next-auth.js.org/configuration/options#providers
   providers: [
     // https://authjs.dev/getting-started/providers/microsoft-entra-id
     MicrosoftEntraID({
@@ -22,7 +18,23 @@ export const authConfig = {
       },
     }),
   ],
+  // https://next-auth.js.org/configuration/options#secret
+  secret: process.env.AUTH_SECRET,
+  // https://next-auth.js.org/configuration/options#session
+  session: {
+    strategy: 'jwt',
+    maxAge: 3600,
+    updateAge: 900,
+  },
+  // https://next-auth.js.org/configuration/options#pages
+  pages: {
+    signIn: '/signin',
+    signOut: '/signin',
+    error: '/signin',
+  },
+  // https://next-auth.js.org/configuration/options#callbacks
   callbacks: {
+    // https://next-auth.js.org/configuration/callbacks#jwt-callback
     async jwt({ token, account }) {
       if (account?.access_token) {
         try {
@@ -37,21 +49,12 @@ export const authConfig = {
       }
       return token;
     },
+    // https://next-auth.js.org/configuration/callbacks#session-callback
     async session({ session, token }) {
       if (token.userDetails) {
         session.user = { ...session.user, ...token.userDetails };
       }
       return session;
     },
-    async authorized({ auth }) {
-      return !!auth?.user;
-    },
   },
-  // https://next-auth.js.org/configuration/options#session
-  session: {
-    strategy: 'jwt',
-    maxAge: 3600,
-    updateAge: 900,
-  },
-  secret: process.env.AUTH_SECRET,
 } satisfies NextAuthConfig;

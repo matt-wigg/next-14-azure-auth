@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/auth';
 import {
   isPublicRoute,
-  redirectToLogin,
+  redirectToSignIn,
   redirectToWelcome,
 } from '@/utils/middleware.utils';
 import { AuthenticatedNextRequest } from '@/types/middleware.types';
@@ -23,11 +23,11 @@ export default auth((req: AuthenticatedNextRequest) => {
     }
 
     if (!isAuthenticated && !isValidPublicRoute) {
-      return redirectToLogin(nextUrl);
+      return redirectToSignIn(nextUrl);
     }
     return NextResponse.next();
   } catch (error) {
     console.error('Error in middleware:', error);
-    return redirectToLogin(req.nextUrl);
+    return redirectToSignIn(req.nextUrl);
   }
 });
