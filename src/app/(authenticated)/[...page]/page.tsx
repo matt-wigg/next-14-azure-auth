@@ -45,20 +45,16 @@ export default async function UnknownPage({
   const catFact = await fetchCatFact();
 
   return (
-    <main className='flex flex-col items-center justify-start py-20 text-center'>
-      <h1 className='text-2xl md:text-4xl font-bold mb-8'>
-        Oops! Page Not Found
-      </h1>
-      <p className='text-lg md:text-xl mb-8'>
-        The page &quot;{params.page}&quot; does not exist... yet.
-      </p>
-      <span className='text-6xl mb-8'>{catEmoji}</span>
-      <div className='text-md md:text-lg text-center bg-slate-700 shadow-md rounded-lg p-4 max-w-md mb-8'>
+    <main className='text-center' aria-label='Unknown page'>
+      <h1 className='text-2xl font-bold'>Oops! Page Not Found</h1>
+      <p>The page &quot;{params.page}&quot; does not exist... yet.</p>
+      <span className='text-6xl'>{catEmoji}</span>
+      <div className='bg-slate-700 p-3 max-w-sm rounded'>
         Fun Fact: {catFact}
       </div>
-      <Link href='/' className='group '>
+      <Link href='/'>
         <Button label='Go Home' type='button'>
-          Meow Button
+          Home
         </Button>
       </Link>
     </main>

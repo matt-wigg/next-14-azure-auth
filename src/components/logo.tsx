@@ -8,16 +8,17 @@ export function Logo({
   src?: StaticImageData | string;
 }) {
   return (
-    <figure className='w-24 h-24 mx-auto border border-slate-700 relative overflow-hidden rounded-full'>
+    <figure className='w-24 h-24 mx-auto border relative overflow-hidden rounded-full'>
       <Image
         src={src}
         alt='Logo'
         fill
-        sizes='100vw'
+        sizes='96px'
         style={{
           objectFit: 'cover',
         }}
         priority
+        quality={85}
       />
     </figure>
   );

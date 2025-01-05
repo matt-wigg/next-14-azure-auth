@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Next-14-Azure-Auth | Microsoft Entra ID',
-  description: 'A next-auth v5 template for Microsoft Entra ID authentication.',
+  description: 'A Next-Auth v5 template for Microsoft Entra ID authentication.',
 };
 
 export default function RootLayout({

@@ -1,21 +1,32 @@
-import { LoadingSpinner } from '@/components/loading-spinner';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => void;
   type: 'button' | 'submit' | 'reset';
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   label: string;
   loading?: boolean;
 }
 
+function LoadingSpinner() {
+  return (
+    <div
+      className='h-6 w-6 mx-auto border-2 rounded-full border-y-white border-x-black animate-spin'
+      role='status'
+      aria-label='Loading spinner'
+    />
+  );
+}
+
 export function Button({
   onClick,
-  type,
+  type = 'button',
   children,
-  className,
+  className = '',
   label,
-  loading,
+  loading = false,
+  ...rest
 }: ButtonProps) {
   const content = loading ? <LoadingSpinner /> : children || label;
 
@@ -23,9 +34,10 @@ export function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`inline-flex justify-center items-center w-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200 disabled:opacity-50 disabled:pointer-events-none hover:underline underline-offset-4 ${className}`}
+      className={className}
       disabled={loading}
       aria-label={label}
+      {...rest}
     >
       <span className='min-w-60 text-center'>{content}</span>
     </button>

@@ -1,17 +1,13 @@
 import logo from '@/../public/logo.webp';
 import { Logo } from '@/components/logo';
-import { LoginForm } from './_components/login-form';
-import { LoginPolicy } from './_components/login-policy';
+import { SignInForm } from '@/components/sign-in-form';
 
-export default function LoginPage() {
+export default function SignInPage() {
   return (
-    <main
-      className='flex flex-col items-center justify-center space-y-6 w-full min-h-screen'
-      aria-label='Login Page'
-    >
+    <main aria-label='Sign in page'>
       <Logo src={logo} />
-      <LoginForm />
-      <LoginPolicy />
+      <h1 className='text-2xl font-semibold'>Welcome to Next-14-Azure-Auth</h1>
+      <SignInForm />
     </main>
   );
 }

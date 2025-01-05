@@ -1,12 +1,12 @@
 'use server';
 
-import { signIn, signOut } from '@/auth';
+import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
-export async function authenticate(
+export async function signInAction(
   prevState: string | undefined,
   formData: FormData
-) {
+): Promise<string | undefined> {
   try {
     await signIn('microsoft-entra-id', formData);
   } catch (error: unknown) {
@@ -15,8 +15,4 @@ export async function authenticate(
     }
     throw error;
   }
-}
-
-export async function deauthenticate(): Promise<void> {
-  await signOut();
 }

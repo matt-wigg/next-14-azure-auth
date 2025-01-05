@@ -1,6 +1,5 @@
 import MicrosoftEntraID from '@auth/core/providers/microsoft-entra-id';
 import { getUserDetails } from '@/services/msGraphApi';
-import { authEnvConfig } from '@/config/env.config';
 import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
@@ -12,9 +11,9 @@ export const authConfig = {
   providers: [
     // https://authjs.dev/getting-started/providers/microsoft-entra-id
     MicrosoftEntraID({
-      clientId: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_ID,
-      clientSecret: authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_SECRET,
-      issuer: `https://login.microsoftonline.com/${authEnvConfig.AUTH_MICROSOFT_ENTRA_ID_ISSUER}/v2.0`,
+      clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID,
+      clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
+      issuer: `https://login.microsoftonline.com/${process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER}/v2.0`,
       authorization: {
         // https://learn.microsoft.com/en-us/graph/permissions-overview
         params: {
@@ -54,5 +53,5 @@ export const authConfig = {
     maxAge: 3600,
     updateAge: 900,
   },
-  secret: authEnvConfig.AUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
 } satisfies NextAuthConfig;

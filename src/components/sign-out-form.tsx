@@ -1,18 +1,18 @@
-import { deauthenticate } from '../services/msEntraId';
+import { signOut } from '@/auth';
 import { Button } from '@/components/button';
 
-export async function LogoutForm() {
+export async function SignOutForm() {
   return (
     <form
       action={async () => {
         'use server';
-        await deauthenticate();
+        await signOut();
       }}
     >
       <Button
-        label='Log Out'
         type='submit'
         className='bg-red-500 hover:bg-red-600'
+        label='Sign out'
       />
     </form>
   );
