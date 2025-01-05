@@ -1,5 +1,5 @@
 import MicrosoftEntraID from '@auth/core/providers/microsoft-entra-id';
-import { getUserDetails } from '@/services/msGraphApi';
+import { getUserDetails } from '@/services/msGraph';
 import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
