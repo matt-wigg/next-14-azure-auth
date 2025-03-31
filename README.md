@@ -2,13 +2,14 @@
 
 Next-14-Azure-Auth is a starter template for building secure [Next.js](https://nextjs.org/) v14+ [Tailwind CSS](https://tailwindcss.com/) apps with [Microsoft Entra ID authentication](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis). It uses the [Next-Auth.js Library](https://next-auth.js.org/) for authentication and the [Microsoft Graph Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for fetching user data.
 
+![image](https://github.com/user-attachments/assets/35c250b6-248e-486d-af8f-f7c688c53c87)
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Azure Setup for Microsoft Entra ID](#azure-setup-for-microsoft-entra-id)
 - [Local Development Setup](#local-development-setup)
 - [Usage](#usage)
-  - [Authentication Flow](#authentication-flow)
   - [Key Directories and Files](#key-directories-and-files)
 - [Deployment](#deployment)
 
@@ -104,11 +105,8 @@ Follow these steps to configure Microsoft Entra ID for authentication:
 
 ## Usage
 
-### Authentication Flow
-
 > [!IMPORTANT]
 > This application is configured for local development. Ensure your `.env` file is properly set up before proceeding.  
-> Visit the homepage at [http://localhost:3000](http://localhost:3000) to begin.
 
 1. Visit [http://localhost:3000](http://localhost:3000) in your browser.
 2. Click the "Sign in with Microsoft Entra ID" button to initiate the authentication process.
