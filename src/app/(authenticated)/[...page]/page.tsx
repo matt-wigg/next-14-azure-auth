@@ -1,6 +1,7 @@
 'use server';
 
 import Link from 'next/link';
+import { ROUTES } from '@/config/routes.config';
 
 function getRandomCatEmoji() {
   const catEmojis = [
@@ -25,7 +26,7 @@ function getRandomCatEmoji() {
 }
 
 async function fetchCatFact() {
-  const res = await fetch('https://catfact.ninja/fact', {
+  const res = await fetch(ROUTES.EXTERNAL.CAT_FACT, {
     next: { revalidate: 3600 }, // 60 minutes
   });
   if (!res.ok) {
@@ -44,14 +45,12 @@ export default async function UnknownPage({
   const catFact = await fetchCatFact();
 
   return (
-    <main className='text-center' aria-label='Unknown page'>
+    <main aria-label='Unknown page'>
       <h1>Oops! Page Not Found</h1>
       <p>The page &quot;{params.page}&quot; does not exist... yet.</p>
       <span className='text-6xl'>{catEmoji}</span>
-      <div className='bg-slate-700 p-3 max-w-sm rounded'>
-        Fun Fact: {catFact}
-      </div>
-      <Link href='/'>
+      <p>{catFact}</p>
+      <Link href={ROUTES.INTERNAL.WELCOME}>
         <button>Home</button>
       </Link>
     </main>

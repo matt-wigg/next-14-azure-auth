@@ -2,18 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply flex h-screen items-center justify-center bg-black text-white;
+@layer components {
+  .theme {
+    @apply bg-blue-500 hover:bg-blue-600;
+  }
+
+  .theme-text {
+    @apply text-blue-500 hover:text-blue-600;
+  }
+  
+  .focus-state {
+    @apply focus:outline-none focus:ring-1 focus:ring-white;
+  }
+  
+  .disabled-state {
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+  }
+  
+  .hover-state {
+    @apply hover:underline underline-offset-4;
+  }
 }
 
-main {
-  @apply flex flex-col items-center space-y-3;
-}
+@layer base {
+  body {
+    @apply flex h-screen items-center justify-center bg-black text-white;
+  }
 
-button {
-  @apply px-4 py-2 rounded min-w-60 text-center bg-blue-500  hover:bg-blue-600 focus:outline-none focus:ring-1 focus:ring-white disabled:opacity-50 disabled:pointer-events-none hover:underline underline-offset-4;
-}
+  main {
+    @apply flex flex-col items-center space-y-3;
+  }
 
-h1 {
-  @apply text-2xl font-bold;
+  a {
+    @apply theme-text focus-state disabled-state hover-state;
+  }
+
+  button {
+    @apply theme px-4 py-2 rounded min-w-72 text-center focus-state disabled-state hover-state;
+  }
+
+  h1 {
+    @apply text-2xl font-bold;
+  }
 }

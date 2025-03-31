@@ -1,6 +1,7 @@
-import MicrosoftEntraID from '@auth/core/providers/microsoft-entra-id';
-import { getUserDetails } from '@/services/msGraph';
-import type { NextAuthConfig } from 'next-auth';
+import MicrosoftEntraID from "@auth/core/providers/microsoft-entra-id";
+import { getUserDetails } from "@/services/msGraph";
+import { ROUTES } from "@/config/routes.config";
+import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
   // https://next-auth.js.org/configuration/options#providers
@@ -9,11 +10,11 @@ export const authConfig = {
     MicrosoftEntraID({
       clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
       clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
-      issuer: `https://login.microsoftonline.com/${process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER}/v2.0`,
+      issuer: `${ROUTES.EXTERNAL.MICROSOFT_LOGIN}/${process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER}/v2.0`,
       authorization: {
         // https://learn.microsoft.com/en-us/graph/permissions-overview
         params: {
-          scope: 'openid profile email User.Read offline_access',
+          scope: "openid profile email User.Read offline_access",
         },
       },
     }),
@@ -22,15 +23,15 @@ export const authConfig = {
   secret: process.env.AUTH_SECRET,
   // https://next-auth.js.org/configuration/options#session
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
     maxAge: 3600,
     updateAge: 900,
   },
   // https://next-auth.js.org/configuration/options#pages
   pages: {
-    signIn: '/signin',
-    signOut: '/signin',
-    error: '/signin',
+    signIn: ROUTES.INTERNAL.SIGN_IN,
+    signOut: ROUTES.INTERNAL.SIGN_IN,
+    error: ROUTES.INTERNAL.SIGN_IN,
   },
   // https://next-auth.js.org/configuration/options#callbacks
   callbacks: {
@@ -42,7 +43,7 @@ export const authConfig = {
           token.userDetails = userDetails;
         } catch (error) {
           console.error(
-            'Failed to fetch user details from Microsoft Graph API',
+            "Failed to fetch user details from Microsoft Graph API",
             error
           );
         }
