@@ -1,54 +1,66 @@
 # Next-14-Azure-Auth
 
-Next-14-Azure-Auth is a starter template for building secure Next.js v14+ Tailwind apps with Microsoft Entra ID authentication. It uses the [Next-Auth.js Library](https://next-auth.js.org/) for authentication and the [Microsoft Graph Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for fetching user data.
+Next-14-Azure-Auth is a starter template for building secure [Next.js](https://nextjs.org/) v14+ [Tailwind CSS](https://tailwindcss.com/) apps with [Microsoft Entra ID authentication](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis). It uses the [Next-Auth.js Library](https://next-auth.js.org/) for authentication and the [Microsoft Graph Client Library](https://github.com/microsoftgraph/msgraph-sdk-javascript) for fetching user data.
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Azure Setup for Microsoft Entra ID](#azure-setup-for-microsoft-entra-id)
+- [Local Development Setup](#local-development-setup)
+- [Usage](#usage)
+  - [Authentication Flow](#authentication-flow)
+  - [Key Directories and Files](#key-directories-and-files)
+- [Deployment](#deployment)
 
 ## Prerequisites
 
-Ensure the following are installed before running the application locally:
+Before you begin, ensure you have the following installed and set up:
 
 - [Node.js](https://nodejs.org/) (v18.17+) & [npm](https://www.npmjs.com/).
-- Azure account with app registration permissions in Microsoft Entra ID.
+- [Git](https://git-scm.com/) for version control.
+- An [Azure](https://azure.microsoft.com/) account with app registration permissions in Microsoft Entra ID.
 
 ## Azure Setup for Microsoft Entra ID
 
-1. **Register the Application**
+Follow these steps to configure Microsoft Entra ID for authentication:
 
-   - Navigate to the [Azure portal](https://portal.azure.com/).
-   - Go to **Microsoft Entra ID** > **App registrations** > **New registration**.
-   - Name your application (e.g., `Next-14-Azure-Auth`).
-   - For **Supported account types**, choose **Accounts in this organizational directory only**.
-   - In the **Redirect URI** field, set the following value:  
-     `http://localhost:3000/api/auth/callback/microsoft-entra-id`
-   - Click **Register** to create the application.
+### 1. Register the Application
 
-2. **Configure the Application**
+1. Go to the [Azure portal](https://portal.azure.com/).
+2. Navigate to **Microsoft Entra ID** > **App registrations** > **New registration**.
+3. Enter a name for your application (e.g., `Next-14-Azure-Auth`).
+4. Under **Supported account types**, select **Accounts in this organizational directory only**.
+5. In the **Redirect URI** field, enter:  
+   `http://localhost:3000/api/auth/callback/microsoft-entra-id`
+6. Click **Register** to create the application.
 
-   - Once registered, navigate to the app's overview page:
-     - Copy the **Application (client) ID** and set it in your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_ID`.
-     - Copy the **Directory (tenant) ID** and set it in your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_ISSUER`.
-   - Next, go to **Certificates & secrets**:
-     - Under **Client secrets**, click **New client secret**.
-     - Provide a description (e.g., `Next-14-Azure-Auth Secret`) and choose an expiration period.
-     - Once created, copy the generated secret value and set it in your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_SECRET`.
+### 2. Configure the Application
 
-3. **Set Up API Permissions**
+1. Go to the app's **Overview** page:
+   - Copy the **Application (client) ID** and add it to your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_ID`.
+   - Copy the **Directory (tenant) ID** and add it to your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_ISSUER`.
+2. Navigate to **Certificates & secrets**:
+   - Under **Client secrets**, click **New client secret**.
+   - Add a description (e.g., `Next-14-Azure-Auth Secret`) and set an expiration period.
+   - Copy the generated secret value and add it to your `.env` file as `AUTH_MICROSOFT_ENTRA_ID_SECRET`.
 
-   - Navigate to **API permissions** > **Add a permission**.
-   - Choose **Microsoft Graph** > **Delegated permissions**.
-   - Add the following permissions:
-     - `User.Read` - for accessing user details
-     - `openid` - for OpenID Connect authentication
-     - `email` - for email access
-     - `profile` - for basic profile info
-     - `offline_access` - for refresh tokens
-   - After adding the permissions, click **Grant admin consent for [Your Organization]** to apply them.
+### 3. Set Up API Permissions
 
-4. **(Optional) Create an Enterprise Application**
+1. Go to **API permissions** > **Add a permission**.
+2. Select **Microsoft Graph** > **Delegated permissions**.
+3. Add the following permissions:
+   - `User.Read` - Access user details.
+   - `openid` - OpenID Connect authentication.
+   - `email` - Access email addresses.
+   - `profile` - Access basic profile information.
+   - `offline_access` - Enable refresh tokens.
+4. Click **Grant admin consent for [Your Organization]** to apply the permissions.
 
-   - To manage access to the application:
-     - Go to **Azure Active Directory** > **Enterprise applications**.
-     - Find your application by name and select it.
-     - Under **Users and groups**, assign users or groups that should have access to the application.
+### 4. (Optional) Create an Enterprise Application
+
+1. Navigate to **Azure Active Directory** > **Enterprise applications**.
+2. Find your application by name and select it.
+3. Under **Users and groups**, assign users or groups that should have access to the application.
 
 ## Local Development Setup
 
@@ -88,4 +100,39 @@ Ensure the following are installed before running the application locally:
    npm run dev
    ```
 
-   Your application will be available at `http://localhost:3000`.
+   Your application will be available at [http://localhost:3000](http://localhost:3000).
+
+## Usage
+
+### Authentication Flow
+
+> [!IMPORTANT]
+> This application is configured for local development. Ensure your `.env` file is properly set up before proceeding.  
+> Visit the homepage at [http://localhost:3000](http://localhost:3000) to begin.
+
+1. Visit [http://localhost:3000](http://localhost:3000) in your browser.
+2. Click the "Sign in with Microsoft Entra ID" button to initiate the authentication process.
+3. You will be redirected to the Microsoft Entra ID login page.
+4. After successful login, you will be redirected back to the application, where you can see your user profile information.
+5. You can sign out by clicking the "Sign out" button.
+
+### Key Directories and Files
+
+| **Category**        | **File/Directory**                             | **Description**                                                                 |
+|---------------------|------------------------------------------------|---------------------------------------------------------------------------------|
+| **Authentication**  | `src/app/api/[...nextauth]/route.ts`           | NextAuth.js routes. Customize providers, callbacks, or session behavior.        |
+|                     | `src/services/msGraph.ts`                      | Microsoft Graph API helpers for fetching user data.                             |
+|                     | `src/services/msEntraId.ts`                    | Microsoft Entra ID-specific authentication logic.                               |
+|                     | `src/config/auth.config.ts`                    | Authentication configuration (e.g., provider settings).                         |
+|                     | `src/middleware.ts`                            | Middleware for authentication and route protection.                             |
+| **Components**      | `src/components/sign-in-form.tsx`              | Sign-in form UI.                                                                |
+|                     | `src/components/sign-out-form.tsx`             | Sign-out button UI.                                                             |
+| **Configuration**   | `src/config/routes.config.ts`                  | Route access settings for authenticated/unauthenticated pages.                  |
+|                     | `src/config/auth.config.ts`                    | Authentication configuration (e.g., provider settings).                         |
+|                     | `.env` / `.env.local`                          | Environment variables for sensitive credentials.                                |
+| **Styling**         | `tailwind.config.ts`                           | Tailwind CSS configuration.                                                     |
+| **Types**           | `src/types/`                                   | TypeScript definitions for authentication and middleware.                       |
+
+## Deployment
+
+Please refer to the [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for instructions on deploying your application to various platforms.
