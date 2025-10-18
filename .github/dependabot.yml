@@ -12,5 +12,3 @@ updates:
     labels:
       - "dependencies"
       - "automated-pr"
-    reviewers:
-      - "matt-wigg"
