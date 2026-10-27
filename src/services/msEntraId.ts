@@ -4,7 +4,7 @@ import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
 export async function signInAction(
-  prevState: string | undefined,
+  _prevState: string | undefined,
   formData: FormData
 ): Promise<string | undefined> {
   try {

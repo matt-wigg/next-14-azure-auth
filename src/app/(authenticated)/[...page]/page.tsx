@@ -36,18 +36,17 @@ async function fetchCatFact() {
   return data.fact;
 }
 
-export default async function UnknownPage({
-  params,
-}: {
-  params: { page: string };
+export default async function UnknownPage(props: {
+  params: Promise<{ page: string[] }>;
 }) {
+  const params = await props.params;
   const catEmoji = getRandomCatEmoji();
   const catFact = await fetchCatFact();
 
   return (
     <main aria-label='Unknown page'>
       <h1>Oops! Page Not Found</h1>
-      <p>The page &quot;{params.page}&quot; does not exist... yet.</p>
+      <p>The page &quot;{params.page.join("/")}&quot; does not exist... yet.</p>
       <span className='text-6xl'>{catEmoji}</span>
       <p>{catFact}</p>
       <Link href={ROUTES.INTERNAL.WELCOME}>

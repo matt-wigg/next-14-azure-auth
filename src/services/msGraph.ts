@@ -1,4 +1,4 @@
-'use server';
+import 'server-only';
 
 import { Client } from '@microsoft/microsoft-graph-client';
 

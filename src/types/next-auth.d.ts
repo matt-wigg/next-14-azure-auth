@@ -1,5 +1,4 @@
 import 'next-auth';
-import type { JWT } from 'next-auth/jwt';
 
 // Microsoft Graph API types based on /me endpoint
 // https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#response-1

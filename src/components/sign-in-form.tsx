@@ -1,23 +1,19 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
 import { signInAction } from '@/services/msEntraId';
 
-function SignInButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button disabled={pending}>
-      {pending ? 'Signing in...' : 'Sign in with Microsoft Entra ID'}
-    </button>
-  );
-}
-
 export function SignInForm() {
-  const [errorMessage, signIn] = useFormState(signInAction, undefined);
+  const [errorMessage, formAction, isPending] = useActionState(
+    signInAction,
+    undefined
+  );
 
   return (
-    <form action={signIn}>
-      <SignInButton />
+    <form action={formAction}>
+      <button disabled={isPending}>
+        {isPending ? 'Signing in...' : 'Sign in with Microsoft Entra ID'}
+      </button>
       {errorMessage && (
         <p role='alert' className='text-red-500 pt-3'>
           {errorMessage}

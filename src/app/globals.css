@@ -1,28 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer components {
-  .theme {
+@theme {
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-slate-700: #334155;
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
+}
+
+@layer base {
+  *, ::before, ::after { border-color: #e5e7eb; }
+}
+
+
+@utility theme {
     @apply bg-blue-500 hover:bg-blue-600;
   }
 
-  .theme-text {
+@utility theme-text {
     @apply text-blue-500 hover:text-blue-600;
   }
   
-  .focus-state {
-    @apply focus:outline-none focus:ring-1 focus:ring-white;
+@utility focus-state {
+    @apply focus:outline-hidden focus:ring-1 focus:ring-white;
   }
   
-  .disabled-state {
+@utility disabled-state {
     @apply disabled:opacity-50 disabled:pointer-events-none;
   }
   
-  .hover-state {
+@utility hover-state {
     @apply hover:underline underline-offset-4;
   }
-}
 
 @layer base {
   body {

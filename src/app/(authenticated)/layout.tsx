@@ -1,10 +1,13 @@
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 import { ROUTES } from "@/config/routes.config";
 
-export default function AuthenticatedLayout({
+export default async function AuthenticatedLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (!(await auth())?.user) redirect('/signin');
   return (
     <main aria-label="Authenticated layout">
       {children}
