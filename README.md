@@ -17,7 +17,7 @@ Next-14-Azure-Auth is a starter template for building secure [Next.js](https://n
 
 Before you begin, ensure you have the following installed and set up:
 
-- [Node.js](https://nodejs.org/) (v18.17+) & [npm](https://www.npmjs.com/).
+- [Node.js](https://nodejs.org/) (v24 LTS) & [npm](https://www.npmjs.com/).
 - [Git](https://git-scm.com/) for version control.
 - An [Azure](https://azure.microsoft.com/) account with app registration permissions in Microsoft Entra ID.
 
@@ -134,3 +134,9 @@ Follow these steps to configure Microsoft Entra ID for authentication:
 ## Deployment
 
 Please refer to the [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for instructions on deploying your application to various platforms.
+
+## Runtime maintenance (October 2026)
+
+The repository keeps its original template name; the deployed runtime is now Next.js 16 and React 19. Node.js 24 LTS is required. Run `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`, `npm run test:smoke`, and `npm audit` before deploying. The smoke suite uses synthetic local authentication configuration, never signs in or calls Microsoft Graph.
+
+Auth.js remains on the existing v5 API track, pinned to security-patched `5.0.0-beta.32`; the stable npm tag is v4 and does not expose the v5 `auth`/server-action API used by this template. TypeScript 6.0.3 and ESLint 9.39.5 are the newest compatible versions for the current typescript-eslint and React/import lint plugins; their declared peer ranges do not support TypeScript 7 or ESLint 10. ESLint 9 is end-of-life upstream; this is a documented lint-tooling compatibility limitation until those plugins support ESLint 10, not a claim of full upstream support. Node type declarations match the deployed Node 24 runtime.
